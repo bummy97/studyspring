@@ -1,6 +1,8 @@
 package com.ybkim.springstudy.springboot.web.dto;
 
 import static  org.assertj.core.api.Assertions.assertThat; //테스트 검증 라이브러리의 검증 메소드
+
+import com.ybkim.springstudy.springboot.web.dto.HelloResponseDto;
 import org.junit.Test;
 
 public class HelloResponseDtoTest {
