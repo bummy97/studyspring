@@ -1,5 +1,6 @@
 package com.ybkim.springstudy.springboot.web;
 
+import com.ybkim.springstudy.springboot.config.auth.LoginUser;
 import com.ybkim.springstudy.springboot.config.auth.dto.SessionUser;
 import com.ybkim.springstudy.springboot.service.PostsService;
 import com.ybkim.springstudy.springboot.web.dto.PostsReponseDto;
@@ -18,10 +19,10 @@ public class IndexController {
     private final PostsService postsService;
     private final HttpSession httpSession;
     @GetMapping("/")
-    public String index(Model model){ //Model: 서버 템플릿 엔진에서 사용할 수 있는 객체를 저장할 수 있다.
+    public String index(Model model, @LoginUser SessionUser user){ //Model: 서버 템플릿 엔진에서 사용할 수 있는 객체를 저장할 수 있다.
         //여기서는 postsService.findAllDesc()로 가져온 결과를 posts로 index.mustache에 전달한다.
+        //@LoginUser SessionUser user : rlwhsdp httpSession.getAttribute("user")로 가져오던 세션 정보 값이 개선됨
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
         if(user != null){
             model.addAttribute("userName", user.getName());
         }
